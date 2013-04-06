@@ -1,0 +1,15 @@
+--- mm/memory-failure.c
++++ mm/memory-failure.c
+@@ -1469,10 +1469,10 @@
+ 		list_add(&page->lru, &pagelist);
+ #ifndef CONFIG_DMA_CMA
+ 		ret = migrate_pages(&pagelist, new_page, MPOL_MF_MOVE_ALL,
+-								0, MIGRATE_SYNC);
++								false, MIGRATE_SYNC);
+ #else
+ 		ret = migrate_pages(&pagelist, new_page, MPOL_MF_MOVE_ALL,
+-								0, MIGRATE_SYNC, 0);
++								false, MIGRATE_SYNC, 0);
+ #endif
+ 		if (ret) {
+ 			putback_lru_pages(&pagelist);
